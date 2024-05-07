@@ -656,5 +656,25 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "id1",
+    image: "images/products/umbrella.jpg",
+    name: "Poppy's Umbrella",
+    rating: {
+      stars: 5,
+      count: 1000
+    },
+    priceCents: 1000
+  },
+  {
+    id: "id2",
+    image: "images/products/backpack.jpg",
+    name: "American Tourister Backpack",
+    rating: {
+      stars: 3.5,
+      count: 20
+    },
+    priceCents: 1200
   }
 ];
