@@ -63,8 +63,9 @@ export function updateQuantity(productId, newQuantity){
     if(productId === cartItem.productId){
       matchingProduct = cartItem;
     }
-    matchingProduct.quantity = newQuantity;
+  });
+  
+  matchingProduct.quantity = newQuantity;
 
-    saveToStorage();
-  })
+  saveToStorage();
 }

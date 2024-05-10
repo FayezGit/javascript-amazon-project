@@ -41,7 +41,7 @@ cart.forEach((cartItem) => {
           <span class="update-quantity-link link-primary js-update-quantity-link" data-product-id="${matchingProduct.id}">
             Update
           </span>
-          <input class="quantity-input js-quantity-input" data-product-id="${matchingProduct.id}">
+          <input class="quantity-input js-quantity-input-${matchingProduct.id}" data-product-id="${matchingProduct.id}">
           <span class="save-quantity-link link-primary js-save-quantity-link" data-product-id="${matchingProduct.id}">Save</span>
           <span class="delete-quantity-link link-primary js-delete-quantity-link" data-product-id="${matchingProduct.id}">
             Delete
@@ -127,7 +127,7 @@ function saveNewQuantity(saveLink) {
   const productId = saveLink.dataset.productId;
   const container = document.querySelector(`.js-cart-item-container-${productId}`);
   container.classList.remove('is-editing-quantity');
-  const newQuantity = Number(document.querySelector('.quantity-input').value);
+  const newQuantity = Number(document.querySelector(`.js-quantity-input-${productId}`).value);
   if(newQuantity < 0 || newQuantity >= 1000){
     alert('quantity must be atleast 0 and less than 1000');
     return;
@@ -154,7 +154,7 @@ document.querySelectorAll('.js-save-quantity-link')
     })
   });
   
-document.querySelectorAll('.js-quantity-input')
+document.querySelectorAll(`.quantity-input`)
   .forEach((save) => {
       save.addEventListener('keydown', (event) => {
         if(event.key === "Enter") {
