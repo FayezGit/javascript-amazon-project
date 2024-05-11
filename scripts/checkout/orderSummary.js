@@ -150,6 +150,7 @@ function saveNewQuantity(saveLink) {
   document.querySelector(`.js-quantity-label-${productId}`)
     .innerHTML = newQuantity;
   updateCartQuantity();
+  renderPaymentSummary();
 } 
 
 document.querySelectorAll('.js-update-quantity-link')
