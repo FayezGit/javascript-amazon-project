@@ -4,6 +4,8 @@ import {formatCurrency} from '../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
 import {renderPaymentSummary} from './paymentSummary.js';
+import {renderCheckoutHeader} from './checkoutHeader.js';
+
 
 export function renderOrderSummary() {
 let cartSummaryHTML = '';
@@ -24,8 +26,6 @@ cart.forEach((cartItem) => {
     'dddd, MMMM D'
   );
 
-
-  updateCartQuantity();
   cartSummaryHTML += `
   <div class="cart-item-container 
    js-cart-item-container-${matchingProduct.id}">
@@ -115,8 +115,6 @@ function deliveryOptionsHTML(matchingProduct,cartItem) {
 document.querySelector('.js-order-summary')
   .innerHTML = cartSummaryHTML;  
   
-updateCartQuantity();
-
 document.querySelectorAll('.js-delete-quantity-link')
   .forEach((link) => {
     link.addEventListener('click', () => {
@@ -124,15 +122,9 @@ document.querySelectorAll('.js-delete-quantity-link')
       removeFromCart(productId);
       renderOrderSummary();
       renderPaymentSummary();
-      updateCartQuantity();
+      renderCheckoutHeader();
     })
   });
-
-function updateCartQuantity() {
-  const cartQuantity = calculateCartQuantity();
-  document.querySelector('.js-return-to-home-link')
-    .innerHTML = `${cartQuantity} items`;
-};
 
 function saveNewQuantity(saveLink) {
   const productId = saveLink.dataset.productId;
@@ -146,7 +138,7 @@ function saveNewQuantity(saveLink) {
   updateQuantity(productId, newQuantity);
   document.querySelector(`.js-quantity-label-${productId}`)
     .innerHTML = newQuantity;
-  updateCartQuantity();
+  renderCheckoutHeader();
   renderPaymentSummary();
 } 
 
