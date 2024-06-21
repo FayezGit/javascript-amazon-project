@@ -1,6 +1,6 @@
 import {orders} from '../data/orders.js';
 import { formatCurrency } from './utils/money.js';
-import { loadProductsFetch ,getProduct } from '../data/products.js';
+import { loadProductsFetch , getProduct } from '../data/products.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 async function loadPage() {
   await loadProductsFetch();
@@ -8,7 +8,6 @@ async function loadPage() {
   let orderHTML = '';
 
   orders.forEach((order) => {
-    console.log(order);
     const orderTimeString = dayjs(order.orderTime).format('MMMM D');
     orderHTML += `
         <div class="order-container">      
