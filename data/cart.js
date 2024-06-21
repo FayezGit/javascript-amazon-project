@@ -103,6 +103,11 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
   saveToStorage();
 }
 
+export function resetCart() {
+  cart = [];
+  saveToStorage();
+}
+
 export function loadCart(fun) {
   const xhr = new XMLHttpRequest();
   xhr.addEventListener('load', () => {
