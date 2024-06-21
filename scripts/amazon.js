@@ -92,7 +92,7 @@ function renderProductsGrid() {
       .innerHTML = cartQuantity;
   }
 
-  let timeoutId;
+  let previousTimeoutId;
 
   document.querySelectorAll('.js-add-to-cart')
     .forEach((button) => {
@@ -103,10 +103,15 @@ function renderProductsGrid() {
         const addedSelector = document.querySelector(`.js-added-to-cart-${productId}`);
         addedSelector.classList.add('added-to-cart-show');
         
-        clearTimeout(timeoutId);
-
-        timeoutId = setTimeout(() => {addedSelector.classList.remove('added-to-cart-show');
+        if(previousTimeoutId) {
+          clearTimeout(previousTimeoutId);
+        }
+        
+        const timeoutId = setTimeout(() => {
+          addedSelector.classList.remove('added-to-cart-show');
         }, 2000);
+
+        previousTimeoutId = timeoutId;
         addToCart(productId, quantity);
         updateCartQuantity();
         
